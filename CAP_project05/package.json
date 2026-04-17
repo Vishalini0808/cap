@@ -1,0 +1,67 @@
+{
+  "name": "CAP_project05",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "dependencies": {
+    "@cap-js/hana": "^2.7.0",
+    "@sap-cloud-sdk/connectivity": "^4.5.1",
+    "@sap-cloud-sdk/http-client": "^4.5.1",
+    "@sap/cds": "^9",
+    "@sap/xssec": "^4",
+    "axios": "^1.14.0",
+    "express": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^2",
+    "@sap/cds-dk": "^9",
+    "cds-plugin-ui5": "^0.13.0",
+    "mbt": "^1.2.29",
+    "rimraf": "^5.0.5"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-showroomproject": "cds watch --open ns.showroomproject/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "undeploy": "cf undeploy CAP_project05 --delete-services --delete-service-keys --delete-service-brokers",
+    "build": "rimraf resources mta_archives && mbt build --mtar archive",
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
+  },
+  "private": true,
+  "cds": {
+    "requires": {
+      "auth" : {
+        "kind": "mocked"
+      },
+      "[development]": {
+        "auth": {
+          "kind": "basic",
+          "users": {
+            "Admin": {
+              "password": "admin123",
+              "roles": [
+                "Admin"
+              ]
+            },
+            "Dealer-1": {
+              "password": "dealer123",
+              "roles": [
+                "Dealer"
+              ]
+            }
+          }
+        }
+      },
+      "geo_url": {
+        "kind": "rest",
+        "credentials" : {
+          "destination" : "geo_api"
+        }
+      }
+    }
+  },
+  "workspaces": [
+    "app/*"
+  ],
+  "sapux": [
+    "app/showroomproject"
+  ]
+}

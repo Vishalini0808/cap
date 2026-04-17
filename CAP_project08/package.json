@@ -1,0 +1,29 @@
+{
+  "name": "CAP_project08",
+  "version": "1.0.0",
+  "dependencies": {
+    "@sap/cds": "^9",
+    "axios": "^1.14.0",
+    "country-state-city": "^3.2.1"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^2",
+    "@sap/cds-dk": "^9"
+  },
+  "scripts": {
+    "start": "cds-serve"
+  },
+  "cds": {
+    "requires": {
+      "auth": {
+        "kind": "mocked"
+      },
+      "[production]": {
+        "auth": {
+          "kind": "mocked"
+        }
+      }
+    }
+  },
+  "private": true
+}

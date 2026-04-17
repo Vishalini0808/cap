@@ -1,0 +1,91 @@
+_schema-version: 3.3.0
+ID: CAP_project05
+description: A simple CAP project.
+version: 1.0.0
+modules:
+  - name: CAP_project05-srv
+    type: nodejs
+    path: gen/srv
+    requires:
+      - name: CAP_project05-db
+      - name: CAP_DESTINATION_SERVICE
+      - name: CAP_project05-auth
+
+    provides:
+      - name: srv-api
+        properties:
+          srv-url: ${default-url}
+    parameters:
+      buildpack: nodejs_buildpack
+      instances: 1
+    build-parameters:
+      builder: npm-ci
+  - name: CAP_project05-db-deployer
+    type: hdb
+    path: gen/db
+    requires:
+      - name: CAP_project05-db
+    parameters:
+      buildpack: nodejs_buildpack
+  - name: CAP_project05-app-content
+    type: com.sap.application.content
+    path: .
+    requires:
+      - name: CAP_project05-repo-host
+        parameters:
+          content-target: true
+    build-parameters:
+      build-result: resources
+      requires:
+        - artifacts:
+            - nsshowroomproject.zip
+          name: nsshowroomproject
+          target-path: resources/
+  - name: nsshowroomproject
+    type: html5
+    path: app/showroomproject
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm install
+        - npm run build:cf
+      supported-platforms:
+        []
+resources:
+  - name: CAP_project05-db
+    type: org.cloudfoundry.existing-service
+    parameters:
+      service-name: CAP_project05-db
+  - name: CAP_project05-repo-host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-name: CAP_project05-html5-service
+      service-plan: app-host
+  - name: CAP_DESTINATION_SERVICE
+    type: org.cloudfoundry.existing-service
+    parameters:
+      service-name: CAP_DESTINATION_SERVICE
+  - name: CAP_project05-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: CAP_project05-${org}-${space}
+        tenant-mode: dedicated
+        oauth2-configuration:
+          credential-types:
+            - "binding-secret"
+            - "x509"
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm ci
+        - npx cds build --production

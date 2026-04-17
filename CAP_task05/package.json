@@ -1,0 +1,24 @@
+{
+  "name": "CAP_task05",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@cap-js/hana": "^2.7.0",
+    "@sap/approuter": "^21.1.0",
+    "@sap/cds": "^9"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^2",
+    "@sap/cds-dk": "^9"
+  },
+  "scripts": {
+    "start": "cds run"
+  },
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "hana"
+      }
+    }
+  }
+}

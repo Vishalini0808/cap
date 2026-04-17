@@ -1,0 +1,32 @@
+{
+  "xsappname": "CAP_project05",
+  "tenant-mode": "dedicated",
+  "description": "Security profile of called application",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.Admin",
+      "description": "Admin access"
+    },
+    {
+      "name": "$XSAPPNAME.Dealer",
+      "description": "Dealer access"
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "Admin",
+      "description": "Admin role",
+      "scope-references": [
+        "$XSAPPNAME.Admin"
+      ]
+    },
+    {
+      "name": "Dealer",
+      "description": "Dealer role",
+      "scope-references": [
+        "$XSAPPNAME.Dealer"
+      ]
+    }
+  ],
+  "attributes": []
+}

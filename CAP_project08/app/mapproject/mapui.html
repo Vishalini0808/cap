@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Location Finder</title>
+</head>
+
+<body style="font-family: Arial; text-align:center; margin-top:50px;">
+
+    <h2>Location Finder</h2>
+
+    <input id="locationInput" placeholder="Enter location" style="padding:8px; width:250px;" />
+    <button onclick="getLocation()" style="padding:8px;">Search</button>
+
+    <div id="output" style="margin-top:20px;"></div>
+
+    <script>
+        async function getLocation() {
+
+            const loc = document.getElementById("locationInput").value;
+
+            if (!loc) {
+                document.getElementById("output").innerHTML = "Enter a location";
+                return;
+            }
+
+            try {
+
+                const response = await fetch(
+                    `/odata/v4/map/getLocation(address='${encodeURIComponent(loc)}')`
+                );
+
+                const data = await response.json();
+                const result = data.value;
+
+                if (!result || result.length === 0) {
+                    document.getElementById("output").innerHTML = "Location not found";
+                    return;
+                }
+
+                const locationData = result[0];
+
+                document.getElementById("output").innerHTML = `
+                    <div style="border:1px solid #ccc; padding:15px; display:inline-block;">
+                        <p><b>Latitude:</b> ${locationData.latitude}</p>
+                        <p><b>Longitude:</b> ${locationData.longitude}</p>
+                        <p><b>City:</b> ${locationData.city || '-'}</p>
+                        <p><b>State:</b> ${locationData.state || '-'}</p>
+                        <p><b>Country:</b> ${locationData.country || '-'}</p>
+                    </div>
+
+                    <br><br>
+
+                    <iframe 
+                        width="500" 
+                        height="300" 
+                        src="https://www.openstreetmap.org/export/embed.html?marker=${locationData.latitude},${locationData.longitude}">
+                    </iframe>
+                `;
+
+            } catch (err) {
+                console.error(err);
+                document.getElementById("output").innerHTML = "Error fetching location";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

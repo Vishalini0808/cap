@@ -1,0 +1,5 @@
+AccountID;AccountNumber;AccountType;Balance;customer_CustomerID;branch_BranchID
+9e48dd07-f861-4959-8e0d-d41844562468;AccountNumber3283;AccountType4131;9994;4874;3d114ee1-cb8f-4522-8c83-2444ac171f54
+75efdf2a-ab15-47f4-99f1-0dda9cee2760;AccountNumber357;AccountType4108;2167;2403;465bf179-27ab-4db2-82ad-7f3bbf4fd87d
+07ab5b20-226f-4e4f-b9d0-7ffc99499d94;AccountNumber2520;AccountType3474;9056;8594;3d114ee1-cb8f-4522-8c83-2444ac171f54
+32a0502d-4518-4d0f-bb97-1bd077cf009d;AccountNumber8287;AccountType3420;0;4874;e4aae1a7-e145-464f-91c7-162944c8d485
