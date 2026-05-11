@@ -1,0 +1,32 @@
+{
+  "name": "Document_AI",
+  "version": "1.0.0",
+  "dependencies": {
+    "@sap-cloud-sdk/http-client": "^4.6.0",
+    "@sap/cds": "^9",
+    "axios": "^1.15.2",
+    "form-data": "^4.0.5",
+    "multer": "^2.1.1"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^2"
+  },
+  "scripts": {
+    "start": "cds-serve"
+  },
+  "private": true,
+  "cds": {
+    "requires": {
+      "docAI": {
+        "credentials": {
+          "uaa": {
+            "url": "${DOC_AI_TOKEN_URL}",
+            "clientid": "${DOC_AI_CLIENT_ID}",
+            "clientsecret": "${DOC_AI_CLIENT_SECRET}"
+          },
+          "url": "${DOC_AI_API_URL}"
+        }
+      }
+    }
+  }
+}

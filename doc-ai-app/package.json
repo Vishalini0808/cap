@@ -1,0 +1,30 @@
+{
+  "name": "doc-ai-app",
+  "version": "1.0.0",
+  "dependencies": {
+    "@cap-js/hana": "^2.7.0",
+    "@sap/cds": "^9",
+    "dotenv": "^17.4.2"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^2"
+  },
+  "scripts": {
+    "start": "cds-serve"
+  },
+  "private": true,
+  "cds": {
+  "requires": {
+    "docAI": {
+      "credentials": {
+        "uaa": {
+          "url": "${DOC_AI_TOKEN_URL}",
+          "clientid": "${DOC_AI_CLIENT_ID}",
+          "clientsecret": "${DOC_AI_CLIENT_SECRET}"
+        },
+        "url": "${DOC_AI_API_URL}"
+      }
+    }
+  }
+}
+}

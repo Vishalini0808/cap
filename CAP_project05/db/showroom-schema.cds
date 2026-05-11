@@ -27,7 +27,6 @@ entity StateTax : managed{
     taxRate : Decimal(5,2);
 }
 
-
 entity Showroom : cuid,managed {
 
     name : localized String;

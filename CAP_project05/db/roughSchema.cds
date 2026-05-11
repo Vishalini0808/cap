@@ -1,118 +1,121 @@
-// Scenario 1 (Basic – Association)
+// // admin token: QWRtaW46YWRtaW4xMjM=
+// // dealer token: RGVhbGVyLTE6ZGVhbGVyMTIz
 
-// One Customer can have many Orders
-// Each Order belongs to one Customer
+// // Scenario 1 (Basic – Association)
 
-// 🎯 Task:
-// Define entities
-// Use managed association
-// Make it bidirectional
+// // One Customer can have many Orders
+// // Each Order belongs to one Customer
 
-entity Customer {
-    key ID : UUID;
-    name : String;
-    orders : Association to many Orders on orders.customer = $self;
-}
+// // 🎯 Task:
+// // Define entities
+// // Use managed association
+// // Make it bidirectional
 
-entity Orders {
-    key ID : UUID;
-    itmes : String;
-    customer : Association to one Customer;
-}
+// entity Customer {
+//     key ID : UUID;
+//     name : String;
+//     orders : Association to many Orders on orders.customer = $self;
+// }
 
-// 🔥 Scenario 2 (Composition)
+// entity Orders {
+//     key ID : UUID;
+//     itmes : String;
+//     customer : Association to one Customer;
+// }
 
-// One Order contains multiple OrderItems
-// If Order is deleted → OrderItems should also be deleted
-// 🎯 Task:
-// Use composition
-// Define parent → child correctly
-// Add child → parent association
+// // 🔥 Scenario 2 (Composition)
 
-entity Order {
-    key ID : UUID;
-    orderItems : Composition of many OrderItems on orderItems.order = $self;
-}
+// // One Order contains multiple OrderItems
+// // If Order is deleted → OrderItems should also be deleted
+// // 🎯 Task:
+// // Use composition
+// // Define parent → child correctly
+// // Add child → parent association
 
-entity OrderItems {
-    key ID : UUID;
-    order : Association to Order;
-}
+// entity Order {
+//     key ID : UUID;
+//     orderItems : Composition of many OrderItems on orderItems.order = $self;
+// }
 
-// 🔥 Scenario 3 (Unmanaged Association)
+// entity OrderItems {
+//     key ID : UUID;
+//     order : Association to Order;
+// }
 
-// A Product belongs to a Category
-// You want to manually control foreign key (category_ID)
+// // 🔥 Scenario 3 (Unmanaged Association)
 
-// 🎯 Task:
-// Define unmanaged association
-// Use proper on condition
-// Also define reverse association
+// // A Product belongs to a Category
+// // You want to manually control foreign key (category_ID)
 
-entity Product { 
-    key ID: UUID;
-    category_ID : UUID;
-    category : Association to Category on category.ID = $self.category_ID;
-}
+// // 🎯 Task:
+// // Define unmanaged association
+// // Use proper on condition
+// // Also define reverse association
 
-entity Category {
-    key ID : UUID;
-    products : Association to many Product on products.category_ID = $self.ID;
-}
+// entity Product { 
+//     key ID: UUID;
+//     category_ID : UUID;
+//     category : Association to Category on category.ID = $self.category_ID;
+// }
 
-// 🔥 Scenario 4 (Mixed – Real World)
+// entity Category {
+//     key ID : UUID;
+//     products : Association to many Product on products.category_ID = $self.ID;
+// }
 
-// A School has many Students (strong ownership)
-// A Student can enroll in many Courses
-// A Course can have many Students
+// // 🔥 Scenario 4 (Mixed – Real World)
 
-// 🎯 Task:
-// Use:
-// Composition for School–Student
-// Association (many-to-many) for Student–Course
-// Hint: use junction entity
+// // A School has many Students (strong ownership)
+// // A Student can enroll in many Courses
+// // A Course can have many Students
 
-entity School {
-    key ID : UUID;
-    name : String;
-    students : Composition of many Student on students.school = $self;
-}
+// // 🎯 Task:
+// // Use:
+// // Composition for School–Student
+// // Association (many-to-many) for Student–Course
+// // Hint: use junction entity
 
-entity Student {
-    key ID : UUID;
-        name : String;
-        school : Association to School;
-        course : Association to many enrollment on course.student = $self;
-}
+// entity School {
+//     key ID : UUID;
+//     name : String;
+//     students : Composition of many Student on students.school = $self;
+// }
 
-entity Course {
-    key ID : UUID;
-        name : String;
-        student : Association to many enrollment on student.course = $self;
-}
+// entity Student {
+//     key ID : UUID;
+//         name : String;
+//         school : Association to School;
+//         course : Association to many enrollment on course.student = $self;
+// }
 
-entity enrollment {
-    key ID : UUID;
-    student : Association to Student;
-    course : Association to Course;
-}
+// entity Course {
+//     key ID : UUID;
+//         name : String;
+//         student : Association to many enrollment on student.course = $self;
+// }
+
+// entity enrollment {
+//     key ID : UUID;
+//     student : Association to Student;
+//     course : Association to Course;
+// }
 
 
-// 🔥 Scenario 5 (Tricky – Think Carefully)
+// // 🔥 Scenario 5 (Tricky – Think Carefully)
 
-// A Manager manages many Employees
-// Each Employee has exactly one Manager
-// Manager is also an Employee
+// // A Manager manages many Employees
+// // Each Employee has exactly one Manager
+// // Manager is also an Employee
 
-// 🎯 Task:
-// Self-association
-// Managed association
-// Optional reverse navigation
+// // 🎯 Task:
+// // Self-association
+// // Managed association
+// // Optional reverse navigation
 
-entity Employee {
-    key ID : UUID;
-    name : String;
-    role : String;
-    salary : Decimal(15,2);
-    manager : Association to Employee;
-}
+// entity Employee {
+//     key ID : UUID;
+//     name : String;
+//     role : String;
+//     salary : Decimal(15,2);
+//     manager : Association to Employee;
+// }

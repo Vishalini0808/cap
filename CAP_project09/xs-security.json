@@ -1,6 +1,6 @@
 {
   "xsappname": "CAP_project09",
-  "tenantmode": "dedicated",
+  "tenant-mode": "dedicated",
   "scopes": [
     {
       "name": "$XSAPPNAME.ExtAdmin",
@@ -31,7 +31,7 @@
     }
   ],
   "oauth2-configuration": {
-    "redirect uris": [
+    "redirect-uris": [
       "http://localhost:5000/**",
       "https://*.cfapps.us10-001.hana.ondemand.com/**",
       "https://*.applicationstudio.cloud.sap/**"
