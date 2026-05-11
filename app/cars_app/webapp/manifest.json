@@ -1,0 +1,227 @@
+{
+  "_version": "1.84.0",
+  "sap.app": {
+    "id": "carsapp",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{Showroom}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.23.0",
+      "toolsId": "7088da23-967f-44b0-845f-61d1a57cca62"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/showroom/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.01"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.147.1",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.fe.templates": {},
+        "sap.f": {}
+      }
+    },
+    "libs": {
+      "sap.m": {},
+      "sap.fe.templates": {},
+      "sap.f": {}
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "carsapp.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.f.routing.Router",
+        "flexibleColumnLayout": {
+          "defaultTwoColumnLayoutType": "TwoColumnsBeginExpanded",
+          "defaultThreeColumnLayoutType": "ThreeColumnsMidExpanded"
+        }
+      },
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "CarsList",
+          "target": [
+            "CarsList"
+          ]
+        },
+        {
+          "pattern": "Cars({key}):?query:",
+          "name": "CarsObjectPage",
+          "target": [
+            "CarsList",
+            "CarsObjectPage"
+          ]
+        },
+        {
+          "pattern" : "Cars({key})/sales({key2}):?query:",
+          "name" : "SalesObjectPage",
+          "target" : ["CarsList", "CarsObjectPage", "SalesObjectPage"]
+        },
+        {
+          "pattern": "Manufacturers({key}):?query:",
+          "name": "ManufacturersObjectPage",
+          "target": ["CarsList","CarsObjectPage", "ManufacturersObjectPage"]
+        }
+      ],
+      "targets": {
+        "CarsList": {
+          "type": "Component",
+          "id": "CarsList",
+          "name": "sap.fe.templates.ListReport",
+          "controlAggregation": "beginColumnPages",
+          "options": {
+            "settings": {
+              "contextPath": "/Cars",
+              "createMode": "creationRow", 
+              "variantManagement": "None",
+              "navigation": {
+                "Cars": {
+                  "detail": {
+                    "route": "CarsObjectPage"
+                  }
+                }
+              },
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "ResponsiveTable"
+                  }
+                }
+              },
+              "initialLoad": "Enabled"
+            }
+          },
+          "contextPattern": ""
+        },
+        "CarsObjectPage": {
+          "type": "Component",
+          "id": "CarsObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "controlAggregation": "midColumnPages",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/Cars",
+              "editMode": "dialog",
+              "content":{
+                 "header" : {
+                  "visible" : true
+                 }
+              },
+              "navigation" : {
+                "sales" : {
+                  "detail" : {
+                    "route" : "SalesObjectPage"
+                  }
+                },
+                "manufacturer": {
+                    "detail": { "route": "ManufacturersObjectPage" }  
+                }
+              }
+            }
+          },
+        "contextPattern": "/Cars({key})"
+        },
+        "SalesObjectPage" : {
+          "type": "Component",
+          "id": "SalesObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "controlAggregation": "endColumnPages",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/Cars/sales"
+            }
+          },
+          "contextPattern": "/Cars({key})/sales({key2})"
+        },
+        "ManufacturersObjectPage": {
+    "type": "Component",
+    "id": "ManufacturersObjectPage",
+    "name": "sap.fe.templates.ObjectPage",
+    "controlAggregation": "midColumnPages",
+    "options": {
+        "settings": {
+            "contextPath": "/Manufacturers"
+        }
+    },
+    "contextPattern": "/Manufacturers({key})"
+}
+      }
+    },
+    
+    "rootView": {
+      "viewName": "sap.fe.templates.RootContainer.view.Fcl",
+      "type": "XML",
+      "async": true,
+      "id": "appRootView" 
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  },
+  "sap.fe": {
+    "app": {
+      "enableLazyLoading": true
+    }
+  }
+}

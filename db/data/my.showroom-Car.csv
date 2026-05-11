@@ -1,0 +1,13 @@
+ID,modelName,bodyType,price,stock,fuelType,mileage,status,manufacturer_ID,criticality,imageUrl
+aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaa1,Innova Crysta,SUV,2300000,12,Diesel,12.5,available,11111111-1111-1111-1111-111111111111,3,https://stat.overdrive.in/wp-content/odgallery/2020/11/58040_2021_Toyota_innova_crysta_1.jpg
+aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaa2,Corolla Altis,Sedan,1800000,5,Petrol,15.0,sold,11111111-1111-1111-1111-111111111111,1,https://imgcdn.oto.com.sg/large/gallery/color/1/12/toyota-corolla-altis-color-267432.jpg
+aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaa3,Glanza,Hatchback,750000,18,CNG,22.0,available,11111111-1111-1111-1111-111111111111,3,https://cdni.autocarindia.com/ExtraImages/20190606121831_Toyota-Glanza-silver.jpg
+aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaa10,Toyota Fortuner,SUV,5000000,2,Petrol,20,3,11111111-1111-1111-1111-111111111111,3,https://vepakistan.com/wp-content/uploads/2015/01/fortuner-900x600.jpg
+
+aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaa4,X5,SUV,9500000,3,Diesel,10.5,sold,22222222-2222-2222-2222-222222222222,1,https://www.topgear.com/sites/default/files/2023/02/P90489746_highRes.jpg
+aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaa5,3 Series,Sedan,5500000,7,Petrol,14.0,available,22222222-2222-2222-2222-222222222222,3,https://images.hgmsites.net/hug/bmw-7-series_100688128_h.jpg
+aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaa6,7 Series,Hatchback,4200000,10,Petrol,16.0,available,22222222-2222-2222-2222-222222222222,3,https://images.hgmsites.net/hug/bmw-7-series_100688128_h.jpg
+
+aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaa7,Nexon,SUV,1200000,20,CNG,17.0,available,33333333-3333-3333-3333-333333333333,3,https://phonemantra.com/wp-content/uploads/2023/09/tata-nexon-ev-facelift-2023-Og.jpg
+aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaa8,Harrier,SUV,2400000,6,Diesel,14.5,sold,33333333-3333-3333-3333-333333333333,1,https://spn-sta.spinny.com/blog/20230217180351/Harrier-red-jpg.webp
+aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaa9,Tiago,Hatchback,600000,15,CNG,23.0,available,33333333-3333-3333-3333-333333333333,3,https://cdni.autocarindia.com/ExtraImages/20250312044053_Tata_Tiago_NRG_front.jpg

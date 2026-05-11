@@ -1,0 +1,27 @@
+{
+  "name": "fiori_app",
+  "version": "1.0.0",
+  "dependencies": {
+    "@cap-js/hana": "^2.8.0",
+    "@sap/cds": "^9"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^2",
+    "cds-plugin-ui5": "^0.13.0"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-project1": "cds watch --open project1/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-cars_app": "cds watch --open carsapp/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-manufacturers_app": "cds watch --open manufacturersapp/index.html?sap-ui-xx-viewCache=false --livereload false"
+  },
+  "private": true,
+  "workspaces": [
+    "app/*"
+  ],
+  "sapux": [
+    "app/project1",
+    "app/cars_app",
+    "app/manufacturers_app"
+  ]
+}
