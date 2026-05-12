@@ -1,6 +1,7 @@
 using ShowroomService as service from '../../srv/car-service';
 annotate service.Cars with @(
 
+
     UI.SelectionFields : [
         stock,
         bodyType,
