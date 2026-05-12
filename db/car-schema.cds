@@ -3,12 +3,12 @@
 namespace my.showroom;
 
 entity Manufacturer  {
-    Key ID : UUID @title: '{i18n>manufacturerId}';
-    name        : String @title: '{i18n>manufacturerName}';
-    country     : String @title: '{i18n>country}';
-    foundedYear : Integer @title: '{i18n>foundedYear}';
+    Key ID : UUID ;
+    name        : String ;
+    country     : String;
+    foundedYear : Integer ;
 
-    manufacturerUrl : String @title: '{i18n>manufacturerUrl}';
+    manufacturerUrl : String ;
 
     cars        : Association to many Car on cars.manufacturer = $self;
 }
@@ -61,8 +61,58 @@ entity Sale  {
     quantity : Integer ;
     total    : Decimal(15,2);
     status : SaleStatus;
+    saleCriticality : Integer;
 
     car      : Association to Car;
     customer : Association to Customer;
+    salesExecutive : Association to Employee;
 }
 
+entity Employee {
+    key ID        : UUID;
+    name          : String;
+    designation   : String;
+    email         : String;
+}
+
+type TestDriveStatus : String enum {
+        Requested;
+        Approved;
+        Completed;
+        Cancelled ;
+}
+
+entity TestDriveBooking {
+    key ID          : UUID;
+    bookingDate     : Timestamp @UI.DateTimeStyle : 'medium';
+    preferredTime   : String;
+    status          : TestDriveStatus;
+    TestDriveCriticallity : Integer;
+
+    customer        : Association to Customer;
+    car             : Association to Car;
+
+}
+
+type paymentMethodtype : String enum  {
+        Cash;
+        Card;
+        UPI;
+        Loan;
+        }
+type paymentStatusType    : String enum {
+        Pending;
+        Paid;
+        Failed;
+    };
+entity Payment {
+    key ID           : UUID;
+    paymentDate      : Timestamp @UI.DateTimeStyle : 'medium';
+    amount           : Decimal(15,2);
+    paymentMethod    : paymentMethodtype ;
+    paymentStatus    : paymentStatusType ;
+
+    paymentMethodCriticallity : Integer;
+    paymentStatusCriticallity  : Integer;
+    sale             : Association to Sale;
+}

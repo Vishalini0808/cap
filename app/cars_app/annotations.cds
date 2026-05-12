@@ -81,7 +81,8 @@ annotate service.Cars with @(
             $Type : 'UI.DataFieldForAction',
             Label : 'Change Status',
             Action : 'ShowroomService.markAsSold'
-        }
+        },
+        // { Value : to}
     ],
 
     // UI.HeaderFacets : [
